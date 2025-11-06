@@ -96,7 +96,6 @@ Se validó el pipeline calculando errores de rotación, escala y RMSE de corresp
 
 ### **3.3 Diagrama de flujo**
 ```mermaid
-flowchart TD
     A[Captura de vistas] --> B[Preprocesamiento<br/>(proyección cil.)]
     B --> C[Detección y Matching]
     C --> D[Estimación H con RANSAC]
