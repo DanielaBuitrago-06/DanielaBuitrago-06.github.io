@@ -1,82 +1,23 @@
-# ==============================
-# CONFIGURACIÓN DE GITHUB PAGES
-# ==============================
-
 title: "Registro y Medición Métrica a partir de Múltiples Vistas"
-description: "Proyecto final del curso Visión por Computador II – 3009228. Universidad Nacional de Colombia, Facultad de Minas."
-author: "Estudiante de Visión por Computador II"
+description: "Proyecto final del curso Visión por Computador II – 3009228"
 lang: es
-timezone: America/Bogota
-
-# ==============================
-# TEMA
-# ==============================
-
-# Tema remoto profesional con barra lateral, búsqueda y soporte para Markdown avanzado
 remote_theme: just-the-docs/just-the-docs@v0.9.0
-
-# Colores y apariencia general
 color_scheme: light
 search_enabled: true
-heading_anchors: true
 
-# ==============================
-# NAVEGACIÓN Y ESTRUCTURA
-# ==============================
-
-# Página principal
-nav_order: 1
-has_children: false
-has_toc: true
-
-# Archivos visibles
 include:
   - index.md
   - informe.md
 
-# ==============================
-# RENDERIZADO Y FORMATO
-# ==============================
+plugins:
+  - jekyll-seo-tag
+  - jekyll-sitemap
 
 markdown: kramdown
 kramdown:
   input: GFM
-  syntax_highlighter: rouge
   math_engine: mathjax
-  math_engine_opts:
-    preview: false
+  syntax_highlighter: rouge
 
-# ==============================
-# PLUGINS Y EXTENSIONES
-# ==============================
-plugins:
-  - jekyll-feed
-  - jekyll-seo-tag
-  - jekyll-sitemap
-
-# ==============================
-# CONFIGURACIÓN DE URL
-# ==============================
-# Reemplaza TU_USUARIO y TU_REPO con tus datos reales
-url: "https://DanielaBuitrago-06.github.io"
-baseurl: "/DanielaBuitrago-06.github.io"
-
-# ==============================
-# VARIABLES EXTRA
-# ==============================
-
-footer_content: "Universidad Nacional de Colombia – Facultad de Minas © 2025"
-aux_links:
-  "Repositorio en GitHub":
-    - "https://github.com/DanielaBuitrago-06/DanielaBuitrago-06.github.io"
-
-# ==============================
-# CONFIGURACIÓN DE MATHJAX Y MERMAID
-# ==============================
-
-just_the_docs:
-  collections:
-    docs:
-      output: true
-  mermaid:
-    version: "10.9.0"   # Soporte para diagramas de flujo
+url: "https://danielabuitrago-06.github.io"
+baseurl: ""
