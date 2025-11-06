@@ -13,7 +13,7 @@ timezone: America/Bogota
 # ==============================
 
 # Tema remoto profesional con barra lateral, búsqueda y soporte para Markdown avanzado
-remote_theme: just-the-docs/just-the-docs
+remote_theme: just-the-docs/just-the-docs@v0.9.0
 
 # Colores y apariencia general
 color_scheme: light
