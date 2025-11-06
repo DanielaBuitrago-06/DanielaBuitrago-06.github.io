@@ -33,6 +33,7 @@ kramdown:
 # Archivos incluidos
 include:
   - index.md
+  - informe.md
 
 # Configuración de MathJax para ecuaciones en línea y bloque
 defaults:
