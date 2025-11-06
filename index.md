@@ -20,7 +20,7 @@ Usando detectores de características (SIFT, ORB), homografía y calibración m�
 ---
 
 ## **Acceso al informe completo**
-👉 [Ver Informe Final](informe_final.md)
+👉 [Ver Informe Final](informe.md)
 
 ---
 
