@@ -31,8 +31,7 @@ has_toc: true
 
 # Archivos visibles
 include:
-  - index.md
-  - informe_final.md
+  - informe.md
 
 # ==============================
 # RENDERIZADO Y FORMATO
