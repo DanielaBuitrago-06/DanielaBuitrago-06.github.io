@@ -1,4 +1,70 @@
-theme: jekyll-theme-minimal
-title: Registro y Medición Métrica a partir de Múltiples Vistas
-description: El presente trabajo aborda el problema de cómo combinar múltiples vistas parciales de una misma escena para obtener una representación coherente y métrica del entorno. La tarea consiste en registrar y fusionar tres imágenes del comedor de la casa del profesor J, tomadas desde diferentes posiciones, con el fin de construir una vista panorámica precisa y calibrada que permita medir objetos reales en centímetros.
-Este ejercicio tiene una doble motivación: (i) comprender los fundamentos de la geometría multivista, y (ii) aplicar técnicas modernas de visión por computador (detector-descriptor, homografía, blending y calibración) para crear una herramienta de reconstrucción y medición a partir de imágenes.
+# ==============================
+# CONFIGURACIÓN DE GITHUB PAGES
+# ==============================
+
+title: "Registro y Medición Métrica a partir de Múltiples Vistas"
+description: "Proyecto final del curso Visión por Computador II – 3009228. Universidad Nacional de Colombia, Facultad de Minas."
+author: "Estudiante de Visión por Computador II"
+lang: es
+timezone: America/Bogota
+
+# Tema visual de GitHub Pages
+theme: minima
+
+# Parámetros de personalización del tema
+show_excerpts: false
+minima:
+  social_links:
+    - { platform: github,  user_url: "https://github.com/DanielaBuitrago-06" }
+
+# ==============================
+# RENDERIZADO Y FORMATO
+# ==============================
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter_opts:
+    line_numbers: true
+  math_engine: mathjax
+  math_engine_opts:
+    preview: false
+
+# Archivos incluidos
+include:
+  - index.md
+  - informe_final.md
+
+# Configuración de MathJax para ecuaciones en línea y bloque
+defaults:
+  - scope:
+      path: ""
+      type: "pages"
+    values:
+      layout: "page"
+      mathjax: true
+
+# ==============================
+# PLUGINS Y EXTENSIONES
+# ==============================
+plugins:
+  - jekyll-feed
+  - jekyll-seo-tag
+  - jekyll-sitemap
+
+# ==============================
+# VARIABLES DE CONSTRUCCIÓN
+# ==============================
+future: true
+lsi: false
+safe: true
+highlighter: rouge
+encoding: utf-8
+
+# ==============================
+# URL DEL SITIO
+# ==============================
+# Reemplaza TU_USUARIO y TU_REPO
+url: "https://danielabuitrago-06.github.io"
+baseurl: "/DanielaBuitrago-06.github.io"
+
