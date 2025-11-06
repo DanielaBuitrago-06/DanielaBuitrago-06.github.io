@@ -95,6 +95,7 @@ Se validó el pipeline calculando errores de rotación, escala y RMSE de corresp
 - Logging automático para trazabilidad y reproducibilidad.
 
 ### **3.3 Diagrama de flujo**
+```text
   ┌────────────────────┐
   │   Captura de vistas│
   └───────┬────────────┘
@@ -126,7 +127,7 @@ Se validó el pipeline calculando errores de rotación, escala y RMSE de corresp
  │Medición e       │
  │Incertidumbre     │
  └──────────────────┘
-
+```
 
 ---
 
