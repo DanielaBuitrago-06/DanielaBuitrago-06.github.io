@@ -64,7 +64,6 @@ baseurl: "/DanielaBuitrago-06.github.io"
 # VARIABLES EXTRA
 # ==============================
 
-logo: "/assets/logo_unal.png"  # opcional: si subes un logo
 footer_content: "Universidad Nacional de Colombia – Facultad de Minas © 2025"
 aux_links:
   "Repositorio en GitHub":
