@@ -1,0 +1,4 @@
+theme: jekyll-theme-minimal
+title: Registro y Medición Métrica a partir de Múltiples Vistas
+description: El presente trabajo aborda el problema de cómo combinar múltiples vistas parciales de una misma escena para obtener una representación coherente y métrica del entorno. La tarea consiste en registrar y fusionar tres imágenes del comedor de la casa del profesor J, tomadas desde diferentes posiciones, con el fin de construir una vista panorámica precisa y calibrada que permita medir objetos reales en centímetros.
+Este ejercicio tiene una doble motivación: (i) comprender los fundamentos de la geometría multivista, y (ii) aplicar técnicas modernas de visión por computador (detector-descriptor, homografía, blending y calibración) para crear una herramienta de reconstrucción y medición a partir de imágenes.
