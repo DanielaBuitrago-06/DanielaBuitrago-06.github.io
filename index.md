@@ -95,14 +95,12 @@ Se validó el pipeline calculando errores de rotación, escala y RMSE de corresp
 - Logging automático para trazabilidad y reproducibilidad.
 
 ### **3.3 Diagrama de flujo**
-```mermaid
     A[Captura de vistas] --> B[Preprocesamiento<br/>(proyección cil.)]
     B --> C[Detección y Matching]
     C --> D[Estimación H con RANSAC]
     D --> E[Warp + Blending]
     E --> F[Calibración<br/>(escala cm/px)]
     F --> G[Medición e Incertidumbre]
-```
 
 ---
 
