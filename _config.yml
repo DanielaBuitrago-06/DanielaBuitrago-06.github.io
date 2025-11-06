@@ -9,7 +9,7 @@ lang: es
 timezone: America/Bogota
 
 # Tema visual de GitHub Pages
-theme: minima
+theme: jekyll-theme-cayman
 
 # Parámetros de personalización del tema
 show_excerpts: false
