@@ -8,14 +8,31 @@ author: "Estudiante de Visión por Computador II"
 lang: es
 timezone: America/Bogota
 
-# Tema visual de GitHub Pages
-theme: jekyll-theme-cayman
+# ==============================
+# TEMA
+# ==============================
 
-# Parámetros de personalización del tema
-show_excerpts: false
-minima:
-  social_links:
-    - { platform: github,  user_url: "https://github.com/DanielaBuitrago-06" }
+# Tema remoto profesional con barra lateral, búsqueda y soporte para Markdown avanzado
+remote_theme: just-the-docs/just-the-docs
+
+# Colores y apariencia general
+color_scheme: light
+search_enabled: true
+heading_anchors: true
+
+# ==============================
+# NAVEGACIÓN Y ESTRUCTURA
+# ==============================
+
+# Página principal
+nav_order: 1
+has_children: false
+has_toc: true
+
+# Archivos visibles
+include:
+  - index.md
+  - informe_final.md
 
 # ==============================
 # RENDERIZADO Y FORMATO
@@ -24,23 +41,10 @@ minima:
 markdown: kramdown
 kramdown:
   input: GFM
-  hard_wrap: false
   syntax_highlighter: rouge
   math_engine: mathjax
-
-# Archivos incluidos
-include:
-  - index.md
-  - informe.md
-
-# Configuración de MathJax para ecuaciones en línea y bloque
-defaults:
-  - scope:
-      path: ""
-      type: "pages"
-    values:
-      layout: "page"
-      mathjax: true
+  math_engine_opts:
+    preview: false
 
 # ==============================
 # PLUGINS Y EXTENSIONES
@@ -51,18 +55,29 @@ plugins:
   - jekyll-sitemap
 
 # ==============================
-# VARIABLES DE CONSTRUCCIÓN
+# CONFIGURACIÓN DE URL
 # ==============================
-future: true
-lsi: false
-safe: true
-highlighter: rouge
-encoding: utf-8
-
-# ==============================
-# URL DEL SITIO
-# ==============================
-# Reemplaza TU_USUARIO y TU_REPO
-url: "https://danielabuitrago-06.github.io"
+# Reemplaza TU_USUARIO y TU_REPO con tus datos reales
+url: "https://DanielaBuitrago-06.github.io"
 baseurl: "/DanielaBuitrago-06.github.io"
 
+# ==============================
+# VARIABLES EXTRA
+# ==============================
+
+logo: "/assets/logo_unal.png"  # opcional: si subes un logo
+footer_content: "Universidad Nacional de Colombia – Facultad de Minas © 2025"
+aux_links:
+  "Repositorio en GitHub":
+    - "https://github.com/DanielaBuitrago-06/DanielaBuitrago-06.github.io"
+
+# ==============================
+# CONFIGURACIÓN DE MATHJAX Y MERMAID
+# ==============================
+
+just_the_docs:
+  collections:
+    docs:
+      output: true
+  mermaid:
+    version: "10.9.0"   # Soporte para diagramas de flujo
