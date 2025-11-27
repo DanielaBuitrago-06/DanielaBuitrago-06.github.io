@@ -122,7 +122,7 @@ En esta sección se presenta la validación del pipeline de registro utilizando 
 
 A continuación se muestra la visualización de los emparejamientos (matches) detectados entre dos imágenes sintéticas después de aplicar una transformación conocida. Esta visualización permite verificar la calidad de las correspondencias encontradas por el algoritmo de matching.
 
-![Visualización de matches detectados entre imágenes sintéticas](results/figures/matches.jpg)
+![Visualización de matches detectados entre imágenes sintéticas](results/figures/matches.png)
 
 *Figura 1: Visualización de emparejamientos (matches) detectados entre la imagen base y la imagen transformada. Las líneas conectan los puntos correspondientes identificados por el algoritmo de matching. Se muestran hasta 30 matches para mejor visualización.*
 
@@ -162,7 +162,7 @@ El pipeline corrigió deformaciones gracias a la proyección cilíndrica. Se eva
 
 La proyección cilíndrica se aplica como paso previo a la detección de características para reducir la distorsión angular causada por rotaciones de cámara. Esta transformación geométrica proyecta las imágenes sobre una superficie cilíndrica, mejorando la calidad de las correspondencias en panoramas amplios.
 
-![Proyección cilíndrica aplicada a las imágenes](results/figures/cylindrical_projection.jpg)
+![Proyección cilíndrica aplicada a las imágenes](results/figures/cylindrical_projection.png)
 
 *Figura 2: Comparación antes y después de aplicar la proyección cilíndrica. La imagen de la izquierda muestra la imagen original, mientras que la de la derecha muestra el resultado de la proyección cilíndrica con f=900 píxeles.*
 
@@ -170,11 +170,12 @@ La proyección cilíndrica se aplica como paso previo a la detección de caracte
 
 A continuación se muestran las visualizaciones de los emparejamientos detectados entre las imágenes para ambos detectores (ORB y SIFT). Estas visualizaciones permiten evaluar la calidad y cantidad de correspondencias encontradas por cada método.
 
-![Matches detectados con ORB](results/figures/matches_orb.jpg)
+![Matches detectados con ORB](results/figures/matches_orb.png)
+![Matches detectados con ORB2](results/figures/matches_orb2.png)
 
 *Figura 3: Visualización de matches detectados entre imágenes usando el detector ORB. Las líneas conectan los puntos correspondientes identificados.*
 
-![Matches detectados con SIFT](results/figures/matches_sift.jpg)
+![Matches detectados con SIFT](results/figures/matches_sift.png)
 
 *Figura 4: Visualización de matches detectados entre imágenes usando el detector SIFT. Comparación con ORB permite evaluar la calidad de los descriptores.*
 
@@ -203,11 +204,11 @@ A continuación se muestran las visualizaciones de los emparejamientos detectado
 
 El panorama final generado con SIFT (1866 × 2066 píxeles) fue seleccionado como resultado principal, mostrando una cobertura completa del comedor con continuidad visual en las transiciones entre imágenes. El panorama con ORB (1700 × 2366 píxeles) resultó ligeramente más grande pero con mejor relación de aspecto (0.719 vs 0.903 de SIFT).
 
-![Panorama generado con detector ORB](results/figures/panorama_orb.jpg)
+![Panorama generado con detector ORB](results/figures/orb.png)
 
 *Figura 5: Panorama final del comedor generado utilizando el detector ORB. Dimensiones: 1700 × 2366 píxeles.*
 
-![Panorama generado con detector SIFT](results/figures/panorama_sift.jpg)
+![Panorama generado con detector SIFT](results/figures/syft.png)
 
 *Figura 6: Panorama final del comedor generado utilizando el detector SIFT. Dimensiones: 1866 × 2066 píxeles. Este fue seleccionado como resultado principal por su mejor alineación.*
 
@@ -218,7 +219,7 @@ El panorama final generado con SIFT (1866 × 2066 píxeles) fue seleccionado com
 La vista panorámica muestra continuidad en paredes, mesa y cuadro, con transiciones suaves sin bordes notorios. El panorama calibrado incluye una barra de escala visual de 50 cm en la esquina inferior derecha para referencia métrica.
 
 <!-- TODO: Agregar imagen del panorama final -->
-<!-- ![Panorama final del comedor](results/figures/panorama.jpg) -->
+<!-- ![Panorama final del comedor](results/figures/panorama.png) -->
 
 ### **4.4 Calibración y mediciones**
 
@@ -232,7 +233,7 @@ El factor de escala calculado fue **s = 0.2590 cm/píxel**, obtenido mediante un
 
 A continuación se muestra el panorama final calibrado con barra de escala de 50 cm incluida para referencia métrica. Este panorama permite realizar mediciones precisas de objetos en la escena utilizando la escala calculada.
 
-![Panorama calibrado con barra de escala](results/figures/panorama_calibrated.jpg)
+![Panorama calibrado con barra de escala](results/figures/panorama_calibrated.png)
 
 *Figura 7: Panorama final calibrado del comedor con barra de escala de 50 cm en la esquina inferior derecha. La calibración permite convertir medidas en píxeles a medidas en centímetros.*
 
