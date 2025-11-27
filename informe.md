@@ -115,21 +115,70 @@ Se validó el pipeline calculando errores de rotación, escala y RMSE de corresp
 ## **4. Experimentos y Resultados**
 
 ### **4.1 Validación sintética**
-Transformación 20°, escala 1.2:  
-- RMSE: 231.62 px  
-- Error angular: 39.88°  
-- Error de escala: 30.90%  
 
-Transformación 5°, escala 1.0:  
-- RMSE: 83.19 px  
-- Error angular: 11.74°  
-- Error de escala: 4.11%  
+En esta sección se presenta la validación del pipeline de registro utilizando imágenes sintéticas con transformaciones conocidas. Se generaron imágenes artificiales de 400 × 400 píxeles aplicando diferentes combinaciones de rotación (5°–45°), escala (1.0–1.3) y traslación fija (tx=30, ty=20).
 
-El algoritmo funciona mejor con transformaciones pequeñas; las grandes (>30° o >1.2×) degradan precisión.
+#### **4.1.1 Visualización de homografía entre imágenes**
+
+A continuación se muestra la visualización de los emparejamientos (matches) detectados entre dos imágenes sintéticas después de aplicar una transformación conocida. Esta visualización permite verificar la calidad de las correspondencias encontradas por el algoritmo de matching.
+
+![Visualización de matches detectados entre imágenes sintéticas](results/figures/matches.jpg)
+
+*Figura 1: Visualización de emparejamientos (matches) detectados entre la imagen base y la imagen transformada. Las líneas conectan los puntos correspondientes identificados por el algoritmo de matching. Se muestran hasta 30 matches para mejor visualización.*
+
+#### **4.1.2 Resultados numéricos de validación**
+
+La siguiente tabla presenta los resultados completos del experimento de validación sintética, incluyendo 12 combinaciones diferentes de parámetros de transformación (ángulo de rotación y escala). Para cada combinación se registraron las métricas de error: RMSE (Root Mean Square Error), error angular, error de escala, número de matches detectados y número de inliers después de RANSAC.
+
+| Ángulo (°) | Escala | RMSE (px) | Error Rot (°) | Error Escala (%) | Matches | Inliers |
+|-----------|--------|-----------|---------------|------------------|---------|---------|
+| 5.0 | 1.00 | 83.191 | 11.737 | 4.112 | 33 | 25 |
+| 5.0 | 1.10 | 103.484 | 8.605 | 14.987 | 34 | 24 |
+| 5.0 | 1.30 | 169.435 | 10.864 | 40.874 | 41 | 28 |
+| 15.0 | 1.00 | 161.791 | 30.017 | 6.207 | 38 | 28 |
+| 15.0 | 1.10 | 647.166 | 56.265 | 10.704 | 34 | 20 |
+| 15.0 | 1.30 | 211.578 | 30.505 | 46.390 | 35 | 23 |
+| 30.0 | 1.00 | 290.490 | 59.399 | 1.271 | 37 | 28 |
+| 30.0 | 1.10 | 297.040 | 65.525 | 26.467 | 34 | 20 |
+| 30.0 | 1.30 | 325.603 | 60.306 | 44.851 | 32 | 22 |
+| 45.0 | 1.00 | 405.195 | 86.334 | 26.714 | 35 | 28 |
+| 45.0 | 1.10 | 467.826 | 97.032 | 50.753 | 27 | 21 |
+| 45.0 | 1.30 | 427.461 | 96.166 | 44.428 | 30 | 20 |
+
+*Tabla 1: Resultados completos de la validación sintética. Se muestran las métricas de error (RMSE, error angular, error de escala) y estadísticas de matching (número de matches e inliers) para cada combinación de parámetros de transformación.*
+
+**Análisis de resultados:**
+
+- **Mejor resultado** (menor RMSE): Ángulo=5°, Escala=1.0 → RMSE: 83.19 px, Error angular: 11.74°, Error escala: 4.11%
+- **Peor resultado** (mayor RMSE): Ángulo=15°, Escala=1.1 → RMSE: 647.17 px, Error angular: 56.27°, Error escala: 10.70%
+
+El algoritmo funciona mejor con transformaciones pequeñas; las grandes (>30° o >1.2×) degradan precisión. Las escalas intermedias (1.1) en combinación con rotaciones producen los peores resultados, sugiriendo que pequeñas variaciones de escala combinadas con rotación introducen más ambigüedad en el matching.
 
 ### **4.2 Registro del comedor**
 
-El pipeline corrigió deformaciones gracias a la proyección cilíndrica. Se evaluaron ambos detectores (SIFT y ORB) para comparar su rendimiento. La proyección cilíndrica se aplicó con una longitud focal estimada de 900 píxeles. Los resultados del registro fueron:
+El pipeline corrigió deformaciones gracias a la proyección cilíndrica. Se evaluaron ambos detectores (SIFT y ORB) para comparar su rendimiento. La proyección cilíndrica se aplicó con una longitud focal estimada de 900 píxeles antes de la detección de características para mejorar la calidad del matching.
+
+#### **4.2.1 Proyección cilíndrica**
+
+La proyección cilíndrica se aplica como paso previo a la detección de características para reducir la distorsión angular causada por rotaciones de cámara. Esta transformación geométrica proyecta las imágenes sobre una superficie cilíndrica, mejorando la calidad de las correspondencias en panoramas amplios.
+
+![Proyección cilíndrica aplicada a las imágenes](results/figures/cylindrical_projection.jpg)
+
+*Figura 2: Comparación antes y después de aplicar la proyección cilíndrica. La imagen de la izquierda muestra la imagen original, mientras que la de la derecha muestra el resultado de la proyección cilíndrica con f=900 píxeles.*
+
+#### **4.2.2 Detección de matches**
+
+A continuación se muestran las visualizaciones de los emparejamientos detectados entre las imágenes para ambos detectores (ORB y SIFT). Estas visualizaciones permiten evaluar la calidad y cantidad de correspondencias encontradas por cada método.
+
+![Matches detectados con ORB](results/figures/matches_orb.jpg)
+
+*Figura 3: Visualización de matches detectados entre imágenes usando el detector ORB. Las líneas conectan los puntos correspondientes identificados.*
+
+![Matches detectados con SIFT](results/figures/matches_sift.jpg)
+
+*Figura 4: Visualización de matches detectados entre imágenes usando el detector SIFT. Comparación con ORB permite evaluar la calidad de los descriptores.*
+
+#### **4.2.3 Resultados comparativos: ORB vs SIFT**
 
 **Detector ORB:**
 - Imagen 2 (respecto a imagen de referencia):
@@ -150,10 +199,19 @@ El pipeline corrigió deformaciones gracias a la proyección cilíndrica. Se eva
   - Inliers después de RANSAC: **298** (46.2% de matches)
 - Panorama final: **1866 × 2066 píxeles**
 
+#### **4.2.4 Panoramas generados**
+
 El panorama final generado con SIFT (1866 × 2066 píxeles) fue seleccionado como resultado principal, mostrando una cobertura completa del comedor con continuidad visual en las transiciones entre imágenes. El panorama con ORB (1700 × 2366 píxeles) resultó ligeramente más grande pero con mejor relación de aspecto (0.719 vs 0.903 de SIFT).
 
-<!-- TODO: Agregar imagen comparativa de panoramas ORB vs SIFT -->
-<!-- ![Comparación panoramas ORB vs SIFT](results/figures/panorama_orb.jpg) y ![Panorama SIFT](results/figures/panorama_sift.jpg) -->
+![Panorama generado con detector ORB](results/figures/panorama_orb.jpg)
+
+*Figura 5: Panorama final del comedor generado utilizando el detector ORB. Dimensiones: 1700 × 2366 píxeles.*
+
+![Panorama generado con detector SIFT](results/figures/panorama_sift.jpg)
+
+*Figura 6: Panorama final del comedor generado utilizando el detector SIFT. Dimensiones: 1866 × 2066 píxeles. Este fue seleccionado como resultado principal por su mejor alineación.*
+
+<!-- TODO: Agregar imagen comparativa lado a lado de ambos panoramas -->
 
 ### **4.3 Imagen fusionada final**
 
@@ -164,13 +222,37 @@ La vista panorámica muestra continuidad en paredes, mesa y cuadro, con transici
 
 ### **4.4 Calibración y mediciones**
 
-Se estableció una escala métrica utilizando dos dimensiones conocidas:
+Se estableció una escala métrica utilizando dos dimensiones conocidas del panorama generado con SIFT:
 - Cuadro de la Virgen de Guadalupe (altura): **117.0 cm**
 - Mesa (ancho): **161.1 cm**
 
 El factor de escala calculado fue **s = 0.2590 cm/píxel**, obtenido mediante una estimación basada en las dimensiones del panorama y las medidas conocidas. La incertidumbre en la calibración fue de **±0.52 cm** (0.44% relativa), correspondiente a una incertidumbre de **±2.0 píxeles** en la selección de puntos.
 
-**Mediciones realizadas:**
+#### **4.4.1 Panorama calibrado**
+
+A continuación se muestra el panorama final calibrado con barra de escala de 50 cm incluida para referencia métrica. Este panorama permite realizar mediciones precisas de objetos en la escena utilizando la escala calculada.
+
+![Panorama calibrado con barra de escala](results/figures/panorama_calibrated.jpg)
+
+*Figura 7: Panorama final calibrado del comedor con barra de escala de 50 cm en la esquina inferior derecha. La calibración permite convertir medidas en píxeles a medidas en centímetros.*
+
+#### **4.4.2 Proceso de calibración**
+
+La calibración se realizó mediante la identificación de dos objetos con dimensiones conocidas en el panorama:
+
+1. **Cuadro de la Virgen de Guadalupe** (altura conocida: 117.0 cm)
+   - Utilizado como primera referencia métrica
+   - Permite calcular una escala inicial
+
+2. **Mesa** (ancho conocido: 161.1 cm)
+   - Utilizado como segunda referencia métrica
+   - Permite validar y refinar la escala calculada
+
+Estas dos medidas conocidas permitieron establecer la escala final de **0.2590 cm/píxel** con alta precisión.
+
+#### **4.4.3 Tabla de mediciones realizadas**
+
+Una vez establecida la escala, se identificaron y midieron los siguientes elementos adicionales en el panorama:
 
 | Elemento | Puntos de referencia | Distancia (px) | Medida (cm) | Incertidumbre ± (cm) | Incertidumbre relativa (%) |
 |---------|----------------------|----------------|-------------|----------------------|---------------------------|
@@ -184,10 +266,13 @@ El factor de escala calculado fue **s = 0.2590 cm/píxel**, obtenido mediante un
 
 *Dimensiones conocidas utilizadas para calibración
 
-La incertidumbre promedio en las mediciones fue de **1.88%**, con incertidumbres relativas que varían entre 0.96% (ventana) y 3.61% (silla). La incertidumbre total se calculó mediante propagación de error mediante suma cuadrática de la incertidumbre de calibración (±0.52 cm) y la incertidumbre de medición (±5.0 píxeles ≈ ±1.29 cm). La mayor incertidumbre relativa en la silla se debe a su menor tamaño (38.66 cm), lo que hace que el error absoluto constante tenga mayor impacto porcentual.
+*Tabla 2: Resultados completos de las mediciones realizadas en el panorama calibrado. Se muestran las dimensiones medidas (en píxeles y centímetros) junto con sus incertidumbres absolutas y relativas.*
 
-<!-- TODO: Agregar imagen del panorama calibrado con barra de escala -->
-<!-- ![Panorama calibrado](results/figures/panorama_calibrated.jpg) -->
+**Análisis de incertidumbres:**
+
+La incertidumbre promedio en las mediciones fue de **1.88%**, con incertidumbres relativas que varían entre 0.96% (ventana) y 3.61% (silla). La incertidumbre total se calculó mediante propagación de error mediante suma cuadrática de la incertidumbre de calibración (±0.52 cm) y la incertidumbre de medición (±5.0 píxeles ≈ ±1.29 cm). 
+
+La mayor incertidumbre relativa en la silla (3.61%) se debe a su menor tamaño (38.66 cm), lo que hace que el error absoluto constante tenga mayor impacto porcentual. Por el contrario, elementos más grandes como la ventana (144.99 cm) presentan menor incertidumbre relativa (0.96%).
 
 ---
 
